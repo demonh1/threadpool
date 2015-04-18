@@ -50,7 +50,7 @@ void test2Reduce(bool dec){
 
 int main() {
 	
-		const size_t kMinSize = 16;
+	const size_t kMinSize = 16;
     	const size_t kMaxSize = 256;
     	const size_t kKeepAliveMs = 1000;
 
