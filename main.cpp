@@ -71,13 +71,11 @@ std::cout << "Test2 >> stop() ... \n";
 threadpool::ThreadPool pool1(50);
 bool stopped = false;
 for (int i = 0; i < 10; ++i) {
-		Task* t_normal1 = new Task(boost::bind(testReduce, true),NORMAL);
-        pool1.execute(t_normal1);
+        pool1.execute(new Task(boost::bind(testReduce, true),NORMAL));
     } 
 		 
     for (int i = 0; i < 10; ++i) {
-	   Task* t_high1 = new Task(boost::bind(testAdd, true), HIGH);
-       pool1.execute(t_high1);
+       pool1.execute(new Task(boost::bind(testAdd, true), HIGH));
  	 
     }
     stopped = pool1.stop();
@@ -88,14 +86,12 @@ for (int i = 0; i < 10; ++i) {
 	threadpool::ThreadPool pool2(kMinSize, kMaxSize, kKeepAliveMs);
 	
     for (int i = 0; i < 10; ++i) {
-		Task* t_high = new Task(boost::bind(test2Add, true), HIGH);
-	   	pool2.execute(t_high);
+	   	pool2.execute(new Task(boost::bind(test2Add, true), HIGH));
  	 
     }
 
 	for (int i = 0; i < 10; ++i) {
-		Task* t_normal = new Task(boost::bind(test2Reduce, true),NORMAL);
-        pool2.execute(t_normal);
+        pool2.execute(new Task(boost::bind(test2Reduce, true),NORMAL));
     } 
 // force stop
 pool2.shutdownNow();
